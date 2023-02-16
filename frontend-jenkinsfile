@@ -25,7 +25,7 @@ pipeline {
         sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/amisha-jenkins/expense-tracker-frontend:.*+image-registry.openshift-image-registry.svc:5000/amisha-jenkins/expense-tracker-frontend:${DOCKERTAG}+g' frontend.yaml"
         sh "cat frontend.yaml"
         sh "git add ."
-        sh "git commit -m 'done by jenkins frontend-deployment-pipeline' "
+        sh "git commit -m 'done by jenkins deployment-pipeline' "
        // sh "git pull"
         sh 'git push https://$user:$encodedPass@github.com/$user/front-back-deployment.git HEAD:branch'
             }
