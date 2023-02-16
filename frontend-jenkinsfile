@@ -20,7 +20,7 @@ pipeline {
 
         sh 'git config user.email "${GITHUB_EMAIL}"'
         sh 'git config user.name  "${GITHUB_USERNAME}"'
-        sh "cat manifest.yaml"
+        sh "cat frontend.yaml"
         echo "${DOCKERTAG}"
         sh "sed -i 's+image-registry.openshift-image-registry.svc:5000/amisha-jenkins/expense-tracker-frontend:.*+image-registry.openshift-image-registry.svc:5000/amisha-jenkins/expense-tracker-frontend:${DOCKERTAG}+g' frontend.yaml"
         sh "cat frontend.yaml"
@@ -40,7 +40,7 @@ pipeline {
                     openshift.withProject("$PROJECT_NAME") {
                         echo "Using project: ${openshift.project()}"
                          sh 'oc project "$PROJECT_NAME"'
-                         sh 'oc apply -f manifest.yaml'
+                         sh 'oc apply -f frontend.yaml'
                     }
                  }
             }
